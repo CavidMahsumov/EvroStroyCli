@@ -1,0 +1,146 @@
+/* Üst Navbar */
+.top-navbar {
+  background: white;
+  padding: 10px 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  width: 50px;
+  height: 50px;
+  margin-right: 8px;
+}
+
+.logo span {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: red;
+}
+
+/* Axtarış */
+.search-bar {
+  flex-grow: 1;
+  display: flex;
+  margin: 0 20px;
+}
+
+.search-bar input {
+  flex-grow: 1;
+  padding: 8px;
+  border: 2px solid #f5c6cb;
+  border-radius: 4px;
+}
+
+.search-bar button {
+  background-color: #dc3545;
+  border: none;
+  color: white;
+  padding: 0 20px;
+  border-radius: 4px;
+}
+
+/* Telefon & İstifadəçi */
+.user-actions {
+  display: flex;
+  align-items: center;
+}
+
+.phone-info {
+  margin-right: 20px;
+}
+
+.btn-outline {
+  border: 1px solid red;
+  padding: 5px 10px;
+  margin-right: 10px;
+  color: red;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.btn-outline:hover {
+  background: red;
+  color: white;
+}
+
+/* Hamburger Menu */
+.hamburger {
+  background: none;
+  border: none;
+  font-size: 24px;
+  display: none;
+  cursor: pointer;
+}
+
+/* Alt Navbar (Mobil Ekranda Gizlənəcək) */
+.sub-navbar {
+  background: #333;
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.category-menu {
+  display: flex;
+  flex-wrap: nowrap;
+  list-style: none;
+  padding: 0;
+}
+
+.nav-item {
+  margin: 0 10px;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: 0.3s;
+}
+
+.nav-link:hover {
+  color: #f8d7da;
+}
+
+/* 🌟 Mobil Uyğunluq */
+@media (max-width: 992px) {
+  .hamburger {
+    display: block;
+  }
+
+  .user-actions {
+    display: none;
+  }
+
+  .sub-navbar {
+    display: none;
+  }
+
+  /* Hamburger klik olunanda menyunu aç */
+  .sub-navbar.open {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .category-menu {
+    flex-direction: column;
+  }
+
+  .nav-item {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+}

@@ -1,0 +1,46 @@
+<app-header></app-header>
+
+<div class="register-container">
+  <div class="register-box">
+    <h2>Регистрация</h2>
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">Имя </label>
+        <input type="text" id="firstname" class="form-control" placeholder="Введите свое имя." [(ngModel)]="user.firstname" name="name" required />
+      </div>
+
+      <div class="form-group">
+        <label for="lastname">Фамилия</label>
+        <input type="text" id="lastname" class="form-control" placeholder="Введите свою фамилию" [(ngModel)]="user.lastname" name="phone" required />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Электронная почта</label>
+        <input type="email" id="email" class="form-control" placeholder="Введите свой адрес электронной почты." [(ngModel)]="user.email" name="email" required />
+      </div>
+
+
+
+      <div class="form-group">
+        <label for="password">Пароль</label>
+        <input type="password" id="password" class="form-control" placeholder="Введите свой пароль." [(ngModel)]="user.password" name="password" required />
+      </div>
+
+      <div class="form-group">
+        <label for="confirm-password">Подтвердите пароль</label>
+        <input type="password" id="confirm-password" class="form-control" placeholder="Повторно введите пароль" [(ngModel)]="user.confirmPassword" name="confirmPassword" required />
+      </div>
+
+      <button type="submit" class="btn btn-danger">Зарегистрироваться</button>
+    </form>
+
+    <p class="login-link">У вас уже есть аккаунт?<a href="/login">Войти</a></p>
+  </div>
+  <div class="notification" *ngIf="showNotification">
+    Регистрация успешно завершена ✅
+  </div>
+</div>
+
+
+  <app-footer></app-footer>
+  

@@ -1,0 +1,45 @@
+<app-header></app-header>
+
+<main class="product-detail-container">
+  <section class="product-image">
+    <img [src]="product?.imageUrl" [alt]="product?.name">
+  </section>
+
+  <section class="product-info">
+    <h1>{{ product?.name }}</h1>
+    <div class="rating">★★★★★ <span>(4.5/5)</span></div>
+
+    <p class="price">{{ product?.price }} ₼</p>
+    <p class="stock" [ngClass]="{'out-of-stock': product?.quantity === 0}">
+      {{ product?.quantity  ? 'На складе: ' + product?.quantity + ' штук' : 'Нет на складе' }}
+    </p>
+
+    <div class="payment-options">
+      <label>Калькулятор кредита</label>
+      <div class="installment-options">
+        <button *ngFor="let month of installments" (click)="selectInstallment(month)">
+          {{ month }} месяцев
+        </button>
+      </div>
+    </div>
+
+    <div class="quantity">
+      <button (click)="decreaseQuantity()">-</button>
+      <span>{{ quantity }}</span>
+      <button (click)="increaseQuantity()">+</button>
+    </div>
+
+    <button class="buy-btn" (click)="buyProduct()">🛒 Купить</button>
+    
+
+<!-- Bildiriş -->
+  <div class="notification" *ngIf="showNotification">
+    Товар добавлен в корзину! ✅
+  </div>
+
+  
+  </section>
+</main>
+
+<app-footer></app-footer>
+

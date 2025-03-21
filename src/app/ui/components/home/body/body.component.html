@@ -1,0 +1,107 @@
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<div>
+  <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    </div>
+    
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="https://designmarket.az/images/upload/image/Categories%20descriptions/%D0%9E%D1%81%D0%BD%D0%BE%D0%B2%D0%BD%D1%8B%D0%B5%20%D1%81%D1%82%D1%80%D0%BE%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5%20%D0%BC%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%B0%D0%BB%D1%8B/%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D0%BD%D1%8B%D0%B5%20%D1%81%D1%82%D1%80%D0%BE%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5%20%D0%BC%D0%B0%D1%82%D0%B5%D1%80%D0%B8%D0%B0%D0%BB%D1%8B.jpg" class="d-block w-100" alt="Slide 1">
+      </div>
+      <!-- <div class="carousel-item">
+      </div>
+      <div class="carousel-item">
+      </div> -->
+    </div>
+    
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Önceki</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Sonraki</span>
+    </button>
+  </div>
+  <div class="btndiv">
+    <button style="margin-top: 3%; margin-bottom: 1%;" type="button" class="btn btn-outline-secondary" (click)="goToCatalogDetail()"> Новые поступления</button>
+    <button style="margin-top: 3%; margin-bottom: 1%;" type="button" class="btn btn-outline-secondary" (click)="goToCatalogDetail()">Наша подборка для вас</button>
+    <button style="margin-top: 3%; margin-bottom: 1%;" type="button" class="btn btn-outline-secondary" (click)="goToCatalogDetail()">Бестселлер</button>
+
+  </div>
+
+    <div class="products">
+      <div class="products">
+        <div class="product-card" *ngFor="let product of products">
+          <span class="installment">Купить в рассрочку</span>
+          <img [src]="product.imageUrl" alt="Məhsul Şəkli">
+          <div class="stars">{{ product.rating }}</div>
+          <h3>{{ product.name }}</h3>
+          <p class="price">{{ product.price }}</p>
+          <div class="add-to-cart">Добавить в корзину</div>
+        </div>
+      </div>
+      
+    </div>
+
+    <div class="furset-container">
+      <h2>Возможность</h2>
+      <div class="underline"></div>
+    
+      <div class="furset-list">
+        <div class="furset-card" *ngFor="let item of fursetler">
+          <img [src]="item.image" alt="Fürsət">
+          <div class="furset-info">
+            <p class="date">{{ item.date }}</p>
+            <h3>{{ item.title }}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="blog-container">
+      <h2>Blog</h2>
+      <p class="blog-description">
+        Если вы ищете информацию при ремонте дома, офиса или выборе продукции, прочитайте статьи на разные темы.
+      </p>
+    
+      <!-- Blog kartları -->
+      <div class="blog-list">
+        <div class="blog-card large">
+          <img src="https://media.istockphoto.com/id/184092766/photo/barbecue-on-a-summer-evening.jpg?s=612x612&w=0&k=20&c=gwGVW8RWEeRLX4VzmBseIXXo3JIp5QPlbgE3Soe1GnU=" alt="Blog">
+          <div class="overlay">Вот что нужно знать при покупке барбекю</div>
+        </div>
+    
+        <div class="blog-card" *ngFor="let blog of blogs">
+          <img [src]="blog.image" alt="Blog">
+          <div class="blog-info">
+            <h3>{{ blog.title }}</h3>
+            <p>{{ blog.description }}</p>
+          </div>
+        </div>
+      </div>
+    
+      <!-- Populyar Kategoriyalar -->
+      <h2 class="category-title">Популярные категории</h2>
+      <div class="underline"></div>
+    
+      <div class="category-list">
+        <div class="category-card" *ngFor="let category of categories" (click)="onCategoryClick(category.id)" >
+          <img [src]="category.image" alt="Category">
+          <h3>{{ category.title }}</h3>
+          <ul>
+            <li *ngFor="let item of category.items">{{ item }}</li>
+          </ul>
+          <button>Select</button>
+        </div>
+      </div>
+    </div>
+    
+    
+  
+</div>
+

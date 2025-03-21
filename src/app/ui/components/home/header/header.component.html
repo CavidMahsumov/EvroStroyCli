@@ -1,0 +1,48 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+<header class="top-navbar">
+  <div class="container d-flex justify-content-between align-items-center">
+    <!-- Logo -->
+    <a href="#" class="logo d-flex align-items-center">
+      <img src="https://via.placeholder.com/50x50" alt="Logo" />
+      <span>MySite</span>
+    </a>
+
+    <!-- Axtarış Sahəsi -->
+    <form class="search-bar d-flex" (submit)="onSearch($event)">
+      <input 
+        type="text" 
+        class="form-control" 
+        placeholder="Поиск продукта ..." 
+        [(ngModel)]="searchQuery"
+        name="searchInput"
+      >
+      <button type="submit"><i class="bi bi-search"></i></button>
+    </form>
+    
+
+    <!-- Telefon və İstifadəçi -->
+    <div class="user-actions d-flex align-items-center">
+      <div class="phone-info">
+        <p><i class="bi bi-telephone text-danger"></i> <strong>890</strong></p>
+        <small>Запросить звонок</small>
+      </div>
+      <a (click)="goToCart()"  class="btn-outline">Моя корзина</a>
+      <a (click)="goToLogin()" class="btn-outline">Вход</a>
+    </div>
+
+    <!-- Hamburger Menu (Mobil) -->
+    <button class="hamburger" (click)="toggleMenu()">
+      <i class="bi bi-list"></i>
+    </button>
+  </div>
+</header>
+
+<!-- Alt Navbar -->
+<nav class="sub-navbar" [class.open]="menuOpen">
+  <ul class="category-menu">
+    <li  *ngFor="let category of apicategories" class="nav-item">
+      <a (click)="goToCategory(category.id)" class="nav-link">{{ category.categoryName }}</a>
+    </li>
+  </ul>
+</nav>

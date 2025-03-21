@@ -1,0 +1,91 @@
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f8f9fa;
+  }
+  
+  .register-box {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+  }
+  
+  h2 {
+    margin-bottom: 20px;
+    color: #dc3545;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+    text-align: left;
+  }
+  
+  .form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .btn-danger {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background: #dc3545;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .btn-danger:hover {
+    background: #c82333;
+  }
+  
+  .login-link {
+    margin-top: 15px;
+  }
+  
+  .login-link a {
+    color: #dc3545;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .login-link a:hover {
+    text-decoration: underline;
+  }
+  
+  /* 🌟 Mobil uyğunluq */
+  @media (max-width: 600px) {
+    .register-box {
+      padding: 20px;
+      width: 90%;
+    }
+  }
+  
+
+  .notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    animation: fadeInOut 2s ease-in-out;
+  }

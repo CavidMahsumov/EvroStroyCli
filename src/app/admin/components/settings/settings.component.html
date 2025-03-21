@@ -1,0 +1,51 @@
+<div class="admin-panel">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <h3>Admin Panel</h3>
+      <ul>
+        <li><a (click)="goToHome()">Ana Səhifə</a></li>
+        <li><a (click)="goToProducts()">Məhsullar</a></li>
+        <li><a (click)="goToOrders()">Sifarişlər</a></li>
+        <li><a >Müştərilər</a></li>
+        <li><a >Statistikalar</a></li>
+        <li class="active"><a >Parametrlər</a></li>
+      </ul>
+    </div>
+  
+    <!-- Main Content -->
+    <div class="content">
+      <h2>Sayt Parametrləri</h2>
+  
+      <!-- Saytın Loqosu -->
+      <div class="logo-container">
+        <img [src]="siteLogo" alt="Sayt Logosu" class="logo">
+      </div>
+  
+      <!-- Loqo dəyişdirmə -->
+      <input type="file" (change)="updateLogo($event)">
+  
+      <div class="settings">
+        <div class="setting-item">
+          <strong>Şirkət Adı:</strong> {{ companyName }}
+          <button (click)="editField('companyName')">Redaktə et</button>
+        </div>
+  
+        <div class="setting-item">
+          <strong>Şirkət Ünvanı:</strong> {{ companyAddress }}
+          <button (click)="editField('companyAddress')">Redaktə et</button>
+        </div>
+  
+        <div class="setting-item">
+          <strong>Şirkət Nömrəsi:</strong> {{ companyPhone }}
+          <button (click)="editField('companyPhone')">Redaktə et</button>
+        </div>
+  
+        <div class="setting-item">
+          <strong>Saytın Logosu:</strong>
+          <img [src]="siteLogo" alt="Sayt Logosu" class="small-logo">
+          <button (click)="editField('siteLogo')">Redaktə et</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,31 @@
+<app-header></app-header>
+
+<div class="login-container">
+    <div class="login-box">
+        <h2>Вход</h2>
+        <form (ngSubmit)="Login()">
+            <div class="form-group">
+                <label for="email">Электронная почта</label>
+                <input type="email" id="email" class="form-control" placeholder="Введите свой адрес электронной почты."
+                    [(ngModel)]="email" name="email" required />
+            </div>
+
+            <div class="form-group">
+                <label for="password">Пароль</label>
+                <input type="password" id="password" class="form-control" placeholder="Введите свой пароль."
+                    [(ngModel)]="password" name="password" required />
+            </div>
+
+            <button type="submit" class="btn btn-danger">Войти</button>
+
+            <p class="forgot-password"><a href="#">Я забыл пароль</a></p>
+        </form>
+
+        <p class="register-link">Нет аккаунта? <a href="/register">Зарегистрироваться</a></p>
+    </div>
+</div>
+<div class="notification" *ngIf="showNotification">
+    Вход завершен успешно ✅
+</div>
+
+<app-footer></app-footer>

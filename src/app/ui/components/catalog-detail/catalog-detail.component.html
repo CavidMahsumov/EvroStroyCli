@@ -1,0 +1,38 @@
+<app-header></app-header>
+<main class="category-detail-container">
+  <div class="container">
+    <aside class="sidebar">
+      <ul>
+        <li *ngFor="let category of apicategories">
+          <div (click)="toggleCategory(category)" class="category-title">
+            {{ category.categoryName }}
+            <span>{{ category.open ? '▲' : '▼' }}</span>
+          </div>
+          <ul *ngIf="category.open">
+            <li *ngFor="let subCategory of category.subCategories" (click)="filterProductsByCategoryOrSubcategory(category.id, subCategory.subcategoryId,subCategory.subcategoryName)">
+              {{ subCategory.subcategoryName }}
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </aside>
+
+    <section class="category-content">
+      <h1>{{ selectedCategory?.categoryName }}</h1>
+      <div class="product-list">  
+        <div class="product-card" *ngFor="let product of products">
+          <img [src]="product.imageUrl" alt="{{ product.name }}">
+          <h3>{{ product.name }}</h3>
+          <p class="price">{{ product.price }} ₼</p>
+          <p class="stock" [ngClass]="{'out-of-stock': product.quantity === 0}">
+            {{ product.quantity > 0 ? 'На складе: ' + product.quantity + ' штук' : 'Нет на складе' }}
+          </p>
+          <button [routerLink]="['/product-detail', product.id]" (click)="goToProductDetail(product)">Просмотреть продукт</button>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+
+<app-footer></app-footer>

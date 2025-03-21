@@ -1,0 +1,108 @@
+/* Məhsul Siyahısı */
+// styles.scss (və ya global.scss)
+
+$card-bg: #ffffff;              // Kartın fon rəngi
+$card-shadow: rgba(0, 0, 0, 0.1); // Kartın kölgəsi
+$sidebar-bg: #2c3e50;           // Sidebar fon rəngi
+$sidebar-text: white;           // Sidebar mətn rəngi
+$main-bg: #ecf0f1;              // Ana səhifənin fon rəngi
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: $card-bg;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px $card-shadow;
+  }
+  
+  th, td {
+    padding: 12px;
+    text-align: left;
+    font-size: 16px;
+  }
+  .search-box {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+    background: white;
+  }
+  
+  .search-box input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 8px;
+    font-size: 14px;
+  }
+  
+  .search-box button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  
+  .search-box button:hover {
+    background-color: #218838;
+  }
+  thead {
+    background: #34495e;
+    color: white;
+  }
+  
+  tbody tr:nth-child(even) {
+    background: #f2f2f2;
+  }
+  
+  button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #218838;
+  }
+  
+  /* Modal Stili */
+.modal {
+    display: block !important; /* Modalın həmişə açıq olmasını təmin edir */
+    position: fixed;
+    top: 50%;
+    left: 50%;.modal {
+      display: block !important; /* Modalın açıq qalmasını təmin edir */
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+    }
+    
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+  
+  
+  

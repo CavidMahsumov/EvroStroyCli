@@ -1,0 +1,152 @@
+.cart-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+  padding-bottom: 80px; // Footer üçün yer ayırır
+
+  h1 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+
+  .cart-items {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-height: 500px; // Maksimum uzunluq
+    overflow-y: auto; // Əgər çox məhsul olsa, `scroll` aktiv olsun
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: 1px solid #ddd;
+      padding: 10px;
+      border-radius: 8px;
+      background: white;
+
+      .product-info {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+
+        img {
+          width: 80px;
+          height: 80px;
+          border-radius: 5px;
+          object-fit: cover;
+        }
+
+        .details {
+          h3 {
+            font-size: 18px;
+            margin: 0;
+          }
+          .price {
+            font-size: 16px;
+            color: #e60000;
+          }
+        }
+      }
+
+      .quantity-control {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        button {
+          background: #e60000;
+          color: white;
+          border: none;
+          padding: 5px 10px;
+          cursor: pointer;
+          border-radius: 5px;
+          transition: 0.3s;
+
+          &:hover {
+            background: darkred;
+          }
+        }
+
+        span {
+          font-size: 18px;
+          min-width: 30px;
+          text-align: center;
+        }
+      }
+
+      .total {
+        font-size: 16px;
+        font-weight: bold;
+      }
+
+      .remove {
+        background: none;
+        border: none;
+        color: red;
+        cursor: pointer;
+        font-size: 18px;
+        transition: 0.3s;
+
+        &:hover {
+          color: darkred;
+        }
+      }
+    }
+  }
+
+  .cart-summary {
+    margin-top: 20px;
+    text-align: right;
+    font-size: 20px;
+    font-weight: bold;
+    border-top: 2px solid #ddd;
+    padding-top: 10px;
+  }
+
+  .checkout-button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: #e60000;
+    color: white;
+    text-align: center;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: 0.3s;
+
+    &:hover {
+      background: darkred;
+    }
+  }
+}
+
+/* 📱 Mobil uyğunluq */
+@media (max-width: 768px) {
+  .cart-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 15px;
+
+    .quantity-control {
+      justify-content: center;
+    }
+  }
+}
+
+/* 🏁 Footer aşağıda sabit qalsın */
+app-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #333;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+}
