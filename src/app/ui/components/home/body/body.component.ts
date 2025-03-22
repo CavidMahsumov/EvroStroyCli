@@ -28,16 +28,17 @@ export class BodyComponent implements AfterViewInit {
   ngOnInit(){
     this.apiService.getCategories().subscribe(response => {
       if (response.success) {
-        // Process the categories
-        this.apicategories = response.data.map((category: any) => ({
-          id: category.categoryId,
+        // API-dən gələn categoryId sahəsini id sahəsinə map edirik 
+        this.apicategories = response.data.map((category:any) => ({
+          id: category.categoryId, // Backend categoryId göndərir, biz isə id-ə çeviririk
           categoryName: category.categoryName,
-          subCategories: category.subCategories || [],
-          open: false
+          subCategories: category.subCategories
         }));
-        console.log(this.apicategories[0].subCategories[0].subcategoryId);
+  
+        console.log('Mapped Categories:', this.apicategories); // Nəticəni yoxlayın
       }
     });
+  
     this.apiService.getProducts().subscribe(response => {
       this.products = response.data; 
       console.log('Products loaded:', this.products);
@@ -141,6 +142,9 @@ export class BodyComponent implements AfterViewInit {
   onCategoryClick(categoryId: number) {
     console.log("Salam")
     this.router.navigate(['/catalog', categoryId]);
+  }
+  goToProductDetail(productId:string){
+    this.router.navigate(["/product-detail",productId])
   }
 
 }

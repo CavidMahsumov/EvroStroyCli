@@ -1,3 +1,7 @@
+import { CartItemDto } from "./cartItemDto";
+import { Category } from "./category.model";
+import { SubCategory } from "./subcategory.model";
+
 export interface Product {
     id: string;
     name: string;
@@ -13,6 +17,10 @@ export interface Product {
     hasStock: boolean; // `hasStock` sahəsini əlavə etdik
     imageUrl: string;
     saleCount:number;
-    file:File
+    file:File;
+    category:Category;
+    cartItems:CartItemDto[];
+    subCategory:SubCategory;
+    
   }
   

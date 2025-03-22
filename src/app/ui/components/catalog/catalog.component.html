@@ -2,11 +2,10 @@
 
 <main>
   <div class="category-list">
-    <div class="category-card" *ngFor="let category of categories" (click)="onCategoryClick(category.id)" >
-      <img [src]="category.image" alt="Category">
-      <h3>{{ category.title }}</h3>
+    <div class="category-card" *ngFor="let category of apiCategories" (click)="onCategoryClick(category.id)" >
+      <h3>{{ category.categoryName }}</h3>
       <ul>
-        <li *ngFor="let item of category.items">{{ item }}</li>
+        <li *ngFor="let item of category.subCategories">{{ item.subcategoryName }}</li>
       </ul>
       <button>Select</button>
     </div>

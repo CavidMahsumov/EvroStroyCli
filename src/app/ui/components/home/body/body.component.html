@@ -36,13 +36,13 @@
 
     <div class="products">
       <div class="products">
-        <div class="product-card" *ngFor="let product of products">
+        <div class="product-card" *ngFor="let product of products" >
           <span class="installment">Купить в рассрочку</span>
           <img [src]="product.imageUrl" alt="Məhsul Şəkli">
           <div class="stars">{{ product.rating }}</div>
           <h3>{{ product.name }}</h3>
           <p class="price">{{ product.price }}</p>
-          <div class="add-to-cart">Добавить в корзину</div>
+          <div (click)="goToProductDetail(product.id)" class="add-to-cart">просмотреть продукт</div>
         </div>
       </div>
       
@@ -90,13 +90,11 @@
       <div class="underline"></div>
     
       <div class="category-list">
-        <div class="category-card" *ngFor="let category of categories" (click)="onCategoryClick(category.id)" >
-          <img [src]="category.image" alt="Category">
-          <h3>{{ category.title }}</h3>
-          <ul>
-            <li *ngFor="let item of category.items">{{ item }}</li>
-          </ul>
-          <button>Select</button>
+        <div class="category-card" *ngFor="let category of apicategories" (click)="onCategoryClick(category.id) " >
+          <!-- <img [src]="category.image" alt="Category"> -->
+          <h3>{{ category.categoryName }}</h3>
+          
+          <button>Выбирать</button>
         </div>
       </div>
     </div>

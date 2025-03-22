@@ -61,7 +61,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
   increaseQuantity() {
-    if (this.product && this.quantity < this.product.quantity) {
+    if (this.product && this.quantity <this.product.quantity) {
       this.quantity++;
     }
     

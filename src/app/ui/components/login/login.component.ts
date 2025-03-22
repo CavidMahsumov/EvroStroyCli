@@ -29,7 +29,7 @@ export class LoginComponent {
     };
 
 
-    this.http.post('https://localhost:7208/api/Auth/login', loginData, { headers: { 'Content-Type': 'application/json' } })
+    this.http.post('http://173.214.167.131:80/api/Auth/login', loginData, { headers: { 'Content-Type': 'application/json' } })
       .subscribe(
         response => {
           localStorage.setItem('token', JSON.stringify(response)); // Token-i saxlayırıq

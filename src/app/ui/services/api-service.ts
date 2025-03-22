@@ -8,7 +8,7 @@ import { Order } from '../../models/order.model';
   providedIn: 'root' // Global service
 })
 export class ApiService {
-  private baseUrl = 'https://localhost:7208/api'; // ASP.NET API URL-i
+  private baseUrl = 'http://173.214.167.131:80/api'; // ASP.NET API URL-i
 
   constructor(private http: HttpClient) { }
 
@@ -19,7 +19,7 @@ export class ApiService {
 
   // POST request (məsələn, yeni məhsul əlavə et)
   addProduct(productData: FormData): Observable<any> {
-    return this.http.post('https://localhost:7208/api/product/AddProduct', productData);
+    return this.http.post('http://173.214.167.131:80/api/product/AddProduct', productData);
   }
 
   // DELETE request (məsələn, məhsulu sil)
@@ -64,7 +64,7 @@ export class ApiService {
     return this.http.post(url, JSON.stringify(orderData), { headers });
   }
   updateProduct(id: string, productData: any): Observable<any> {
-    return this.http.post(`https://localhost:7208/api/Product/Update/${id}`, productData, {
+    return this.http.post(`http://173.214.167.131:80/api/Product/Update/${id}`, productData, {
       headers: { 'Content-Type': 'application/json' }
     });
   }

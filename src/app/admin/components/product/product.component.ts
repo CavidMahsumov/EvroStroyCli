@@ -7,7 +7,8 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product',
-  imports:[CommonModule,FormsModule,ReactiveFormsModule],
+  standalone: true,
+  imports:[CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss']
 })
@@ -21,23 +22,21 @@ export class ProductComponent implements OnInit {
   productForm: FormGroup;
   selectedProduct: Product | null = null;
 
-  constructor(private apiService: ApiService, private fb: FormBuilder,private routes:Router) {
+  constructor(private apiService: ApiService, private fb: FormBuilder, private router: Router) {
     this.productForm = this.fb.group({
-   
-        name: ['', Validators.required],
-        description: [''],
-        marka: ['', Validators.required],
-        categoryId: [null, Validators.required],
-        subCategoryId: [null, Validators.required],
-        price: [null, [Validators.required, Validators.min(0)]],
-        costPrice: [null, [Validators.required, Validators.min(0)]],
-        quantity: [null, [Validators.required, Validators.min(1)]],
-        saleCount: [0, [Validators.required, Validators.min(0)]],
-        rating: [0, [Validators.min(0), Validators.max(5)]],
-        hasStock: [true], // Əlavə etdim, başlanğıc dəyəri `true` olaraq təyin etdim
-        file: [null]
-   
-
+      name: ['', Validators.required],
+      description: [''],
+      marka: ['', Validators.required],
+      categoryId: ['', Validators.required],
+      subCategoryId: ['', Validators.required],
+      price: [null, [Validators.required, Validators.min(0)]],
+      costPrice: [null, [Validators.required, Validators.min(0)]],
+      quantity: [null, [Validators.required, Validators.min(1)]],
+      saleCount: [0, [Validators.required, Validators.min(0)]],
+      rating: [0, [Validators.min(0), Validators.max(5)]],
+      hasStock: [true],
+      file: [null],
+      imageUrl: ['']
     });
   }
 
@@ -79,9 +78,6 @@ export class ProductComponent implements OnInit {
     this.isProductModalOpen = true;
   }
 
-
-  
-  
   deleteProduct(id: number): void {
     if (confirm('Bu məhsulu silmək istədiyinizə əminsiniz?')) {
       this.apiService.deleteProduct(id).subscribe(() => this.loadProducts());
@@ -93,73 +89,40 @@ export class ProductComponent implements OnInit {
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
-        this.productForm.patchValue({ 
-          imageUrl: reader.result as string, // JSON üçün şəkili Base64 formatında saxlayırıq
-          file: file // FormData üçün faylı saxlayırıq
+        this.productForm.patchValue({
+          imageUrl: reader.result as string,
+          file: file
         });
       };
       reader.readAsDataURL(file);
     }
   }
-  
   saveProduct(): void {
     if (this.productForm.invalid) return;
   
-    // Yeni məhsul əlavə edilirsə -> `FormData`
+    const productData: any = {
+      ...this.productForm.value,
+      cartItems: this.selectedProduct?.cartItems || [] // Default boş array göndəririk
+    };
+  
+    // Yalnız categoryId və subCategoryId ilə id göndəririk
+    productData.category = this.productForm.value.categoryId ? { id: this.productForm.value.categoryId } : { id: 0 }; // Default ID 0
+    productData.subCategory = this.productForm.value.subCategoryId ? { id: this.productForm.value.subCategoryId } : { id: 0 }; // Default ID 0
+  
+    // Məhsulun yeni olduğunu yoxlayaq
     if (!this.isEditing) {
-      const formData = new FormData();
-      formData.append('name', this.productForm.value.name);
-      formData.append('description', this.productForm.value.description);
-      formData.append('marka', this.productForm.value.marka);
-      formData.append('categoryId', this.productForm.value.categoryId);
-      formData.append('subCategoryId', this.productForm.value.subCategoryId);
-      formData.append('price', this.productForm.value.price);
-      formData.append('costPrice', this.productForm.value.costPrice);
-      formData.append('quantity', this.productForm.value.quantity);
-      formData.append('saleCount', this.productForm.value.saleCount);
-      formData.append('rating', this.productForm.value.rating);
-      formData.append('hasStock', this.productForm.value.hasStock);
-  
-      if (this.productForm.value.file) {
-        formData.append('file', this.productForm.value.file);
-      } else {
-        console.error("Şəkil faylı seçilməyib!");
-        return;
-      }
-  
-      this.apiService.addProduct(formData).subscribe(
+      this.apiService.addProduct(productData).subscribe(
         () => {
           this.loadProducts();
-          this.isProductModalOpen = false;
+          this.closeModal();
         },
         (err) => console.error('Xəta baş verdi:', err)
       );
-    } 
-    // Məhsul yenilənirsə -> JSON formatı
-    else if (this.isEditing && this.selectedProduct) {
-      const productData = {
-        id: this.selectedProduct.id,
-        name: this.productForm.value.name,
-        description: this.productForm.value.description,
-        marka: this.productForm.value.marka,
-        categoryId: this.productForm.value.categoryId,
-        subCategoryId: this.productForm.value.subCategoryId,
-        price: this.productForm.value.price,
-        costPrice: this.productForm.value.costPrice,
-        quantity: this.productForm.value.quantity,
-        saleCount: this.productForm.value.saleCount,
-        rating: this.productForm.value.rating,
-        hasStock: this.productForm.value.hasStock,
-        imageUrl: this.productForm.value.imageUrl, // Şəkili Base64 və ya URL kimi göndəririk
-        category: {},
-        subCategory: {},
-        cartItems: []
-      };
-  
+    } else if (this.isEditing && this.selectedProduct) {
       this.apiService.updateProduct(this.selectedProduct.id, productData).subscribe(
         () => {
           this.loadProducts();
-          this.isProductModalOpen = false;
+          this.closeModal();
         },
         (err) => console.error('Xəta baş verdi:', err)
       );
@@ -168,7 +131,12 @@ export class ProductComponent implements OnInit {
   
   
   
-  goToHome(){
-    this.routes.navigate(["/home"])
+  goToHome() {
+    this.router.navigate(['/home']);
+  }
+
+  closeModal() {
+    this.isProductModalOpen = false;
+    this.selectedProduct = null;
   }
 }

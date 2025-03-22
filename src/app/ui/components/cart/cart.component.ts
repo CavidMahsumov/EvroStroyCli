@@ -5,6 +5,7 @@ import { HeaderComponent } from '../home/header/header.component';
 import { FooterComponent } from '../home/footer/footer.component';
 import { ApiService } from '../../services/api-service';
 import { AuthService } from '../../services/auth-service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -17,9 +18,11 @@ export class CartComponent implements OnInit {
   cartItems: any[] = [];
   userId: string | null = null;
   totalPrice?:number;
+  showNotification = false;
 
 
-  constructor(private cartService: CartService,private apiService:ApiService,private authService:AuthService) {}
+
+  constructor(private cartService: CartService,private apiService:ApiService,private authService:AuthService,private router:Router) {}
 
   ngOnInit() {
     this.userId = this.authService.getNameIdentifier();
@@ -51,8 +54,9 @@ export class CartComponent implements OnInit {
   }
 
   removeFromCart(item: any) {
-    this.cartService.removeFromCart(item.id);
-    this.cartItems = this.cartService.getCartItems(); // Yenilənmiş səbəti götür
+    
+    // this.cartService.removeFromCart(item.id);
+    // this.cartItems = this.cartService.getCartItems(); // Yenilənmiş səbəti götür
   }
 
   getTotalPrice() {
@@ -69,7 +73,15 @@ export class CartComponent implements OnInit {
     if(this.userId)
     this.apiService.buyProduct(this.userId, orderData).subscribe({
       next: (response) => {
+        this.showNotification = true;
+
+      // 2 saniyədən sonra bildirişi gizlət
+      setTimeout(() => {
+        this.showNotification = false;
+      }, 2000);
         console.log('Order created successfully:', response);
+        this.router.navigate(['/home'])
+        
       },
       error: (error) => {
         console.error('Error creating order:', error);

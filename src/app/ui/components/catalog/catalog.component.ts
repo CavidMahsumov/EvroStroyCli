@@ -4,12 +4,14 @@ import { FooterComponent } from '../home/footer/footer.component';
 import { CommonModule } from '@angular/common';
 import { provideClientHydration } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { ApiService } from '../../services/api-service';
+import { Category } from '../../../models/category.model';
 
 @Component({
   selector: 'app-catalog',
   imports: [HeaderComponent,FooterComponent,CommonModule],
   templateUrl: './catalog.component.html',
-  styleUrls: ['./catalog.component.scss'],
+  styleUrls: ['./catalog.component.scss'], 
   changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class CatalogComponent {
@@ -61,23 +63,36 @@ export class CatalogComponent {
       open:false
     }
   ];
+  apiCategories?:Category[];
   
-  ngAfterViewInit(){
-    let categoryCards = document.querySelectorAll('.category-card');
-    console.log(categoryCards);
-    categoryCards.forEach(card => {
-      card.addEventListener('click', () => {
-        console.log('Category Card Clicked!');
-      });
-    });
-  }
+  // ngAfterViewInit(){
+  //   let categoryCards = document.querySelectorAll('.category-card');
+  //   console.log(categoryCards);
+  //   categoryCards.forEach(card => {
+  //     card.addEventListener('click', () => {
+  //       console.log('Category Card Clicked!');
+  //     });
+  //   });
+  // }
 
-
+  constructor(private router: Router,private apiService:ApiService) {}
   ngOnInit() {
-    console.log('Categories:', this.categories); // Konsolda çıxmalıdır
+    this.apiService.getCategories().subscribe(response => {
+      if (response.success) {
+        
+        this.apiCategories = response.data.map((category:any) => ({
+          id: category.categoryId, 
+          categoryName: category.categoryName,
+          subCategories: category.subCategories
+        }));
+  
+        console.log('Mapped Categories:', this.apiCategories); 
+      }
+    });
+  
   }
   
-  constructor(private router: Router) {}
+  
 
   // Yeni klik metodu
   onCategoryClick(categoryId: number) {

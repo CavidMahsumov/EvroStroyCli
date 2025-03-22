@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class RegisterService {
 
-  private apiUrl = 'https://localhost:7208/api/Auth/register';  // API URL-ini dəyişin
+  private apiUrl = 'http://173.214.167.131:80/api/Auth/register';  // API URL-ini dəyişin
 
   constructor(private http: HttpClient) { }
 
