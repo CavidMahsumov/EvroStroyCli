@@ -1,4 +1,6 @@
 /* Üst Navbar */
+
+
 .top-navbar {
   background: white;
   padding: 10px 0;
@@ -69,6 +71,7 @@
   color: red;
   text-decoration: none;
   border-radius: 4px;
+  cursor: pointer;
 }
 
 .btn-outline:hover {
@@ -98,6 +101,7 @@
   flex-wrap: nowrap;
   list-style: none;
   padding: 0;
+  cursor: pointer;
 }
 
 .nav-item {

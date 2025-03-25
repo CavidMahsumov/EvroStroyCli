@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 import { Product } from '../../models/product.model';
 import { Order } from '../../models/order.model';
+import { User } from '../../models/user.model';
 
 @Injectable({
   providedIn: 'root' // Global service
@@ -67,7 +68,15 @@ export class ApiService {
     return this.http.post(`http://173.214.167.131:80/api/Product/Update/${id}`, productData, {
       headers: { 'Content-Type': 'application/json' }
     });
+    
   }
+
+
+
+  deleteItemFromCart(itemId: number): Observable<any> {
+    return this.http.post(`${this.baseUrl}/Cart/delete/${itemId}`, {}); 
+  }
+
   
 
   
@@ -80,6 +89,11 @@ export class ApiService {
       return this.http.get<{ data: Order[] }>(`${this.baseUrl}/Order/AllOrders`).pipe(
         map((response: { data: Order[] }) => response.data)
       );
+    }
+
+    getAllUsers():Observable<any>{
+      return this.http.get(`${this.baseUrl}/User/GetAll`);
+
     }
     
   }

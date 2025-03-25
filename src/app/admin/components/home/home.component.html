@@ -3,70 +3,70 @@
     <aside class="sidebar">
       <h2>Admin Panel</h2>
       <ul>
-        <li><a >Ana Səhifə</a></li>
-        <li><a (click)="goToProducts()">Məhsullar</a></li>
-        <li><a (click)="goToOrders()">Sifarişlər</a></li>
-        <li><a >Müştərilər</a></li>
-        <li><a >Statistikalar</a></li>
-        <li><a (click)="goToSettings()" >Parametrlər</a></li>
+        <li><a >Главная страница</a></li>
+        <li><a (click)="goToProducts()">Продукция</a></li>
+        <li><a (click)="goToOrders()">Заказы</a></li>
+        <li><a (click)="goToClients()">Клиенты</a></li>
+        <li><a >Статистика</a></li>
+        <!-- <li><a (click)="goToSettings()" >Parametrlər</a></li> -->
       </ul>
     </aside>
   
     <!-- Sağ Content -->
     <main class="content">
-      <h1>Xoş Gəlmisiniz, Admin!</h1>
+      <h1>Добро пожаловать, Администратор!</h1>
   
       <!-- Filter düymələri -->
       <div class="filter-buttons">
-        <button (click)="filterData('daily')">Günlük</button>
-        <button (click)="filterData('weekly')">Həftəlik</button>
-        <button (click)="filterData('monthly')">Aylıq</button>
+        <button (click)="filterData('daily')">Ежедневно</button>
+        <button (click)="filterData('weekly')">Еженедельно</button>
+        <button (click)="filterData('monthly')">Ежемесячно</button>
       </div>
   
       <!-- Statistikalar -->
       <div class="summary">
         <div class="card">
-          <h3>Sifarişlər</h3>
+          <h3>Заказы</h3>
           <p>{{ orders?.length }}</p>
         </div>
         <div class="card">
-          <h3>Gəlir</h3>
-          <p>{{ revenue }} AZN</p>
+          <h3>Доход</h3>
+          <p>{{ revenue }} Рубль</p>
         </div>
         <div class="card">
-          <h3>Məhsullar</h3>
+          <h3>Продукция</h3>
           <p>{{ products?.length }}</p>
         </div>
       </div>
   
       <!-- Son Sifarişlər -->
-      <h2>Son Sifarişlər</h2>
+      <h2>Последние заказы</h2>
       <table>
         <thead>
           <tr>
-            <th>Sifariş</th>
-            <th>Məbləğ</th>
-            <th>Tarix</th>
+            <th>Заказ</th>
+            <th>Сумма</th>
+            <th>История</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let order of orders">
             <td>{{ order.orderId }}</td>
             <!-- Eğer 'cartItemDtos' dizisi boşsa kontrol et ve hata alma -->
-            <td>{{ order.totalAmount| currency: 'AZN' : true }}</td>
+            <td>{{ order.totalAmount| currency: 'RUB' : true }}</td>
             <td>{{ order.orderDate | date: 'short' }}</td>
           </tr>
         </tbody>
       </table>
       <div class="low-stock-container">
-        <h5>Sayı Azalmış Məhsullar</h5>
+        <h5>Товары с уменьшенным количеством</h5>
         <table class="low-stock-table">
           <thead>
             <tr>
-              <th>Məhsul ID</th>
-              <th>Adı</th>
-              <th>Kateqoriya ID</th>
-              <th>Sayı</th>
+              <th>Продукт ID</th>
+              <th>Название</th>
+              <th>Категория ID</th>
+              <th>Количество</th>
             </tr>
           </thead>
           <tbody>

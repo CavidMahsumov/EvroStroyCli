@@ -138,15 +138,97 @@
   }
 }
 
-/* 🏁 Footer aşağıda sabit qalsın */
-app-footer {
+// /* 🏁 Footer aşağıda sabit qalsın */
+// app-footer {
+//   position: fixed;
+//   bottom: 0;
+//   left: 0;
+//   width: 100%;
+//   background: #333;
+//   color: white;
+//   text-align: center;
+//   padding: 10px 0;
+//   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+// }
+/* Modal Overlay */
+.modal-overlay {
   position: fixed;
-  bottom: 0;
+  top: 0;
   left: 0;
   width: 100%;
-  background: #333;
-  color: white;
-  text-align: center;
-  padding: 10px 0;
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  transition: opacity 0.3s ease;
 }
+
+/* Modal Box */
+.modal {
+  display: block !important;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 500px;
+  z-index: 1000;
+  text-align: center;
+  transform: scale(1);
+  transition: transform 0.3s ease;
+}
+
+.modal label {
+  font-weight: bold;
+  display: block;
+  margin-top: 10px;
+}
+
+.modal input, .modal textarea {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.button-group button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.button-group button:first-child {
+  background-color: #28a745;
+  color: white;
+}
+
+.button-group .cancel {
+  background-color: #dc3545;
+  color: white;
+}
+
+.button-group button:hover {
+  opacity: 0.8;
+}
+
+/* Disable Scroll when Modal is Open */
+body.modal-open {
+  overflow: hidden;
+}
+/* Disable Scroll when Modal is Open */
+
+

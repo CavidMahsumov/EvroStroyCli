@@ -10,6 +10,9 @@ import { AdminHomeComponent } from './admin/components/home/home.component';
 import { ProductComponent } from './admin/components/product/product.component';
 import { OrderComponent } from './admin/components/order/order.component';
 import { SettingsComponent } from './admin/components/settings/settings.component';
+import { AuthGuard } from './guards/auth.guard';
+import { AdminGuard } from './guards/admin.guard';
+import { CustomersComponent } from './admin/components/customers/customers.component';
 
 export const routes: Routes = [
     { path: "", component: HomeComponent },
@@ -20,10 +23,12 @@ export const routes: Routes = [
     { path: "catalog/:id", component: CatalogDetailComponent },
     { path: "product-detail/:id", component: ProductDetailComponent },
     { path: "cart", component: CartComponent },
-    { path: "admin", component: AdminHomeComponent },
-    {path:"admin/products",component:ProductComponent},
-    {path:"admin/orders",component:OrderComponent},
-    {path:"admin/settings",component:SettingsComponent},
 
-    
+    // Admin panelləri üçün Guard-lar əlavə olundu
+    { path: "admin", component: AdminHomeComponent, canActivate: [AuthGuard, AdminGuard] },
+    { path: "admin/products", component: ProductComponent, canActivate: [AuthGuard, AdminGuard] },
+    { path: "admin/orders", component: OrderComponent, canActivate: [AuthGuard, AdminGuard] },
+    { path: "admin/settings", component: SettingsComponent, canActivate: [AuthGuard, AdminGuard] },
+    { path: "admin/customers", component: CustomersComponent, canActivate: [AuthGuard, AdminGuard] },
+
 ];

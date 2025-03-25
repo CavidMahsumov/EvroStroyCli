@@ -5,7 +5,7 @@
     <div class="category-card" *ngFor="let category of apiCategories" (click)="onCategoryClick(category.id)" >
       <h3>{{ category.categoryName }}</h3>
       <ul>
-        <li *ngFor="let item of category.subCategories">{{ item.subcategoryName }}</li>
+        <li style="cursor: pointer;" *ngFor="let item of category.subCategories">{{ item.subcategoryName }}</li>
       </ul>
       <button>Select</button>
     </div>

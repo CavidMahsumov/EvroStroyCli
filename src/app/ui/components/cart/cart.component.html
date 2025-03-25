@@ -1,40 +1,62 @@
 <app-header></app-header>
 
 <main class="cart-container">
-    <h1>Səbətim</h1>
-  
-    <div class="cart-items">
-      <div class="cart-item" *ngFor="let item of cartItems">
-        <div class="product-info">
-          <img [src]="item.imageUrl" alt="{{ item.name }}">
-          <div class="details">
-            <h3>{{ item.productName }}</h3>
-            <p class="price">{{ item.productPrice }} ₼</p>
-          </div>
-        </div>
-  
-        <div class="quantity-control">
-          <span>{{ item.quantity }}</span>
-        </div>
-  
-        <p class="total">{{ (item.productPrice * item.quantity) | number: '1.2-2' }} ₼</p>
+  <h1>Səbətim</h1>
 
-        <button class="remove" (click)="removeFromCart(item)">❌</button>
+  <div class="cart-items">
+    <div class="cart-item" *ngFor="let item of cartItems">
+      <div class="product-info">
+        <img [src]="item.imageUrl" alt="{{ item.name }}">
+        <div class="details">
+          <h3>{{ item.productName }}</h3>
+          <p class="price">{{ item.productPrice }} ₼</p>
+        </div>
       </div>
-    </div>
-  
-    <div class="cart-summary">
-      <strong>Cəmi:</strong> {{ totalPrice }} ₼
-    </div>
-  
-    <button class="checkout-button" (click)="checkout()">
-      Sifariş et
-    </button>
-  </main>
 
-  <div class="notification" *ngIf="showNotification">
-    Товар добавлен в корзину! ✅
+      <div class="quantity-control">
+        <span>{{ item.quantity }}</span>
+      </div>
+
+      <p class="total">{{ (item.productPrice * item.quantity) | number: '1.2-2' }} ₼</p>
+      <button class="delete-button" (click)="removeFromCart(item.cartItemId)">✖</button>
+      
+    </div>
   </div>
 
-  
-  <app-footer></app-footer>
+  <div class="cart-summary">
+    <strong>Cəmi:</strong> {{ totalPrice }} ₼
+  </div>
+
+  <!-- Modal açma düyməsi -->
+  <button class="checkout-button" (click)="confirmOrder()">
+    Sifariş et
+  </button>
+
+  <!-- Modal -->
+  <div class="modal-overlay" *ngIf="isModalOpen" (click)="closeModal()"></div>
+
+  <!-- Modal Box -->
+  <div class="modal" *ngIf="isModalOpen">
+    <h2>Sifariş Məlumatları</h2>
+
+    <label>Ünvan:</label>
+    <input type="text" [(ngModel)]="orderData.location" placeholder="Ünvanınızı daxil edin">
+
+    <label>Telefon Nömrəsi:</label>
+    <input type="text" [(ngModel)]="orderData.phoneNumber" placeholder="Telefon nömrənizi daxil edin">
+
+    <label>Əlavə Qeyd:</label>
+    <textarea [(ngModel)]="orderData.notification" placeholder="Sifariş qeydi (opsional)"></textarea>
+
+    <div class="button-group">
+      <button (click)="confirmOrder()">Təsdiq et</button>
+      <button class="cancel" (click)="closeModal()">Bağla</button>
+    </div>
+  </div>
+</main>
+
+<div class="notification" *ngIf="showNotification">
+  Товар добавлен в корзину! ✅
+</div>
+
+<app-footer></app-footer>

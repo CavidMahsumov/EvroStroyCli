@@ -3,44 +3,44 @@
   <aside class="sidebar">
     <h2>Admin Panel</h2>
     <ul>
-      <li><a (click)="goToHome()">Ana Səhifə</a></li>
-      <li><a>Məhsullar</a></li>
-      <li><a (click)="goToOrder()">Sifarişlər</a></li>
-      <li><a>Müştərilər</a></li>
-      <li><a>Statistikalar</a></li>
-      <li><a (click)="goToSettings()">Parametrlər</a></li>
+      <li><a (click)="goToHome()">Главная страница</a></li>
+      <li><a>Продукция</a></li>
+      <li><a (click)="goToOrder()">Заказы</a></li>
+      <li><a>Клиенты</a></li>
+      <li><a>Статистика</a></li>
+      <!-- <li><a (click)="goToSettings()">Parametrlər</a></li> -->
     </ul>
   </aside>
 
   <!-- Main Content -->
   <main class="content">
-    <h1>Sifarişlər</h1>
+    <h1>Заказы</h1>
 
     <!-- Arama Box -->
     <div class="search-box">
       <input
         type="text"
         [(ngModel)]="searchQuery"
-        placeholder="Sifariş axtarın..."
+        placeholder="Поиск заказа..."
         (input)="filterOrders()" />
-      <button (click)="filterOrders()">Axtar</button>
+      <button (click)="filterOrders()">Поиск</button>
     </div>
 
     <!-- Sifarişlər siyahısı -->
     <table>
       <thead>
         <tr>
-          <th>Sifarişin Nomresi</th>
-          <th>Qiyməti</th>
-          <th>Təsvir</th>
-          <th>Şəkil</th>
-          <th>Əməliyyatlar</th>
+          <th>заказа ID</th>
+          <th>Цена</th>
+          <th>Описание</th>
+          <th>Изображение</th>
+          <th>Операции</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let order of filteredOrders">
           <td>{{ order.orderId }}</td>
-          <td>{{ order.totalAmount }} AZN</td>
+          <td>{{ order.totalAmount }} RUBL</td>
           <td *ngFor="let item of order.cartItemDtos">
             {{ item.productName }}  <!-- Ürün Adı -->
           </td>

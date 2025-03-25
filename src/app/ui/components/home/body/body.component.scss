@@ -32,6 +32,7 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* 4 sütun olacak */
     gap: 20px; /* Kartlar arasındaki boşluk */
+    cursor: pointer;
 }
 .btndiv >button:hover{
     background-color: #c90f2e;
@@ -56,6 +57,7 @@ html, body{
     transition: 0.3s;
     padding: 15px;
     position: relative;
+    cursor: pointer;
 }
 .product-card:hover {
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);

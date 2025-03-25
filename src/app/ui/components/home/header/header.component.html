@@ -4,8 +4,7 @@
   <div class="container d-flex justify-content-between align-items-center">
     <!-- Logo -->
     <a href="#" class="logo d-flex align-items-center">
-      <img src="https://via.placeholder.com/50x50" alt="Logo" />
-      <span>MySite</span>
+      <img src="../../../../../assets/images/cf7033a1-c9ec-4c53-b026-aabf055a1ff9.jfif" alt="Logo" />
     </a>
 
     <!-- Axtarış Sahəsi -->
@@ -28,7 +27,11 @@
         <small>Запросить звонок</small>
       </div>
       <a (click)="goToCart()"  class="btn-outline">Моя корзина</a>
-      <a (click)="goToLogin()" class="btn-outline">Вход</a>
+      <a *ngIf="!isLogged" (click)="goToLogin()" class="btn-outline">Вход</a>
+
+      <div *ngIf="isLogged">
+        <a (click)="logout()" class="btn-outline">Выход</a>
+      </div>
     </div>
 
     <!-- Hamburger Menu (Mobil) -->

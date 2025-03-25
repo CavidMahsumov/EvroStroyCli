@@ -89,11 +89,7 @@ export class ProductDetailComponent implements OnInit {
         error: (err) => console.error('Sepete eklerken hata oluştu:', err),
       });
 
-      this.cartService.addToCart({
-        ...this.product,
-        quantity: this.quantity
-      });
-      this.showNotification = true;
+
 
       // 2 saniyədən sonra bildirişi gizlət
       setTimeout(() => {

@@ -2,34 +2,34 @@
   <aside class="sidebar">
     <h2>Admin Panel</h2>
     <ul>
-      <li><a (click)="goToHome()">Ana Səhifə</a></li>
-      <li><a>Məhsullar</a></li>
-      <li><a>Sifarişlər</a></li>
-      <li><a>Müştərilər</a></li>
-      <li><a>Statistikalar</a></li>
-      <li><a>Parametrlər</a></li>
+      <li><a (click)="goToHome()">Главная страница</a></li>
+      <li><a>Продукция</a></li>
+      <li><a>Заказы</a></li>
+      <li><a>Клиенты</a></li>
+      <li><a>Статистика</a></li>
+      <!-- <li><a>Parametrlər</a></li> -->
     </ul>
   </aside>
 
   <main class="content">
-    <h1>Məhsullar</h1>
+    <h1>Продукция</h1>
 
     <div class="search-box">
-      <input type="text" [(ngModel)]="searchQuery" placeholder="ID və ya Ad axtar..." />
-      <button (click)="filterProducts()">Axtar</button>
+      <input type="text" [(ngModel)]="searchQuery" placeholder="Ищите по ID или названию..." />
+      <button (click)="filterProducts()">Поиск</button>
     </div>
 
-    <button (click)="openAddProductModal()">Məhsul Əlavə Et</button>
+    <button (click)="openAddProductModal()">Добавить товар</button>
 
     <table>
       <thead>
         <tr>
           <th>ID</th>
-          <th>Adı</th>
-          <th>Marka</th>
-          <th>Qiymət</th>
-          <th>Şəkil</th>
-          <th>Əməliyyatlar</th>
+          <th>Название</th>
+          <th>Бренд</th>
+          <th>Цена</th>
+          <th>Изображение</th>
+          <th>Операции</th>
         </tr>
       </thead>
       <tbody>
@@ -37,13 +37,13 @@
           <td>{{ product.id }}</td>
           <td>{{ product.name }}</td>
           <td>{{ product.marka }}</td>
-          <td>{{ product.price }} AZN</td>
+          <td>{{ product.price }} Рубль</td>
           <td>
             <img *ngIf="product.imageUrl" [src]="product.imageUrl" alt="Şəkil" width="50" />
-            <span *ngIf="!product.imageUrl">Şəkil Yoxdur</span>
+            <span *ngIf="!product.imageUrl">Изображение отсутствует</span>
           </td>
           <td>
-            <button (click)="openEditProductModal(product)">Redaktə Et</button>
+            <button (click)="openEditProductModal(product)">Редактировать</button>
             <!-- <button (click)="deleteProduct(product.id)">Sil</button> -->
           </td>
         </tr>
@@ -55,46 +55,46 @@
         <h2>{{ isEditing ? 'Məhsulu Redaktə Et' : 'Yeni Məhsul Əlavə Et' }}</h2>
         
         <form [formGroup]="productForm" (ngSubmit)="saveProduct()">
-          <label for="name">Məhsul Adı:</label>
+          <label for="name">Название товара:</label>
           <input id="name" formControlName="name" required />
     
-          <label for="Description">Təsvir:</label>
+          <label for="Description">Описание:</label>
           <textarea id="Description" formControlName="description"></textarea>
     
-          <label for="marka">Marka:</label>
+          <label for="marka">Бренд:</label>
           <input id="marka" formControlName="marka" required />
     
-          <label for="categoryId">Kateqoriya ID:</label>
+          <label for="categoryId">Категория ID:</label>
           <input id="categoryId" formControlName="categoryId" type="number" required />
     
-          <label for="subCategoryId">Sub-Kateqoriya ID:</label>
+          <label for="subCategoryId">Подкатегория ID:</label>
           <input id="subCategoryId" formControlName="subCategoryId" type="number" required />
     
-          <label for="price">Qiymət:</label>
+          <label for="price">Цена:</label>
           <input id="price" formControlName="price" type="number" step="0.01" required />
     
-          <label for="costPrice">Maya Dəyəri:</label>
+          <label for="costPrice">Себестоимость:</label>
           <input id="costPrice" formControlName="costPrice" type="number" step="0.01" required />
     
-          <label for="quantity">Miqdar:</label>
+          <label for="quantity">Количество:</label>
           <input id="quantity" formControlName="quantity" type="number" required />
     
-          <label for="saleCount">Satış Sayı:</label>
+          <label for="saleCount">Количество продаж:</label>
           <input id="saleCount" formControlName="saleCount" type="number" required />
     
-          <label for="rating">Reytinq:</label>
+          <label for="rating">Рейтинг:</label>
           <input id="rating" formControlName="rating" type="number" min="0" max="5" step="0.1" />
     
-          <label for="hasStock">Anbarda Var:</label>
+          <label for="hasStock">В наличии:</label>
           <input id="hasStock" type="checkbox" formControlName="hasStock" />
     
-          <label for="productImage">Şəkil:</label>  
+          <label for="productImage">Изображение:</label>  
           <input type="file" id="productImage" (change)="onImageSelected($event)" accept="image/*" />
     
           <button type="submit" [disabled]="productForm.invalid">
-            {{ isEditing ? 'Yadda Saxla' : 'Əlavə Et' }}
+            {{ isEditing ? 'Yadda Saxla' : 'Добавить' }}
           </button>
-          <button type="button" (click)="isProductModalOpen = false">Bağla</button>
+          <button type="button" (click)="isProductModalOpen = false">Закрыть</button>
         </form>
       </div>
     </div>

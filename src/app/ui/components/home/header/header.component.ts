@@ -6,6 +6,7 @@ import { ApiService } from '../../../services/api-service';
 import { Category } from '../../../../models/category.model';
 import { FormsModule } from '@angular/forms';
 import { Product } from '../../../../models/product.model';
+import { AuthService } from '../../../services/auth-service';
 
 @Component({
   selector: 'app-header',
@@ -18,6 +19,8 @@ export class HeaderComponent  {
   menuOpen = false;
   apicategories: Category[] = [];
   apiProducts: Product[] = [];
+  isLogged:boolean=false;
+  userEmail:string | null=null;
 
   searchQuery: string = ''; // Axtarış dəyəri burada saxlanır
 
@@ -100,10 +103,20 @@ export class HeaderComponent  {
       items: ['Su fitriləri', 'Boru və fitinqlər', 'Hamam və mətbəx']
     }
   ];
-  constructor(private router:Router,private apiService:ApiService){}
+  constructor(private authService:AuthService, private router:Router,private apiService:ApiService){}
 
 
   ngOnInit(){
+
+    if(this.authService.isAuthenticated()){
+      this.isLogged=true;
+      this.userEmail=this.authService.getNameIdentifier();
+      console.log(this.userEmail)
+    }
+    else{
+      this.isLogged=false;
+    }
+
     this.apiService.getCategories().subscribe(response => {
       if (response.success) {
         // Process the categories
@@ -155,6 +168,8 @@ export class HeaderComponent  {
     
     // Burada axtarış funksiyasını çağırın
   }
-
+  logout(){
+    this.authService.logout();
+  }
 
 }
