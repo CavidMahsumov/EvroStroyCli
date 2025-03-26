@@ -37,16 +37,16 @@
 
   <!-- Modal Box -->
   <div class="modal" *ngIf="isModalOpen">
-    <h2>Sifariş Məlumatları</h2>
+    <h2>Данные заказа</h2>
 
-    <label>Ünvan:</label>
-    <input type="text" [(ngModel)]="orderData.location" placeholder="Ünvanınızı daxil edin">
+    <label>Адрес:</label>
+    <input type="text" [(ngModel)]="orderData.location" placeholder="Введите ваш адрес">
 
     <label>Telefon Nömrəsi:</label>
-    <input type="text" [(ngModel)]="orderData.phoneNumber" placeholder="Telefon nömrənizi daxil edin">
+    <input type="text" [(ngModel)]="orderData.phoneNumber" placeholder="Введите ваш номер телефона">
 
     <label>Əlavə Qeyd:</label>
-    <textarea [(ngModel)]="orderData.notification" placeholder="Sifariş qeydi (opsional)"></textarea>
+    <textarea [(ngModel)]="orderData.notification" placeholder="Комментарий к заказу"></textarea>
 
     <div class="button-group">
       <button (click)="confirmOrder()">Təsdiq et</button>

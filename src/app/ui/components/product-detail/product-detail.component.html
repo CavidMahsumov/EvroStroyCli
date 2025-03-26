@@ -14,14 +14,14 @@
       {{ product?.quantity  ? 'На складе: ' + product?.quantity + ' штук' : 'Нет на складе' }}
     </p>
 
-    <div class="payment-options">
+    <!-- <div class="payment-options">
       <label>Калькулятор кредита</label>
       <div class="installment-options">
         <button *ngFor="let month of installments" (click)="selectInstallment(month)">
           {{ month }} месяцев
         </button>
       </div>
-    </div>
+    </div> -->
 
     <div class="quantity">
       <button (click)="decreaseQuantity()">-</button>
