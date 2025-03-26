@@ -35,10 +35,10 @@ export class ProductDetailComponent implements OnInit {
 
   ngOnInit() {
     this.userId = this.authService.getNameIdentifier();
-    console.log('Kullanıcı ID:', this.userId);
+    // console.log('Kullanıcı ID:', this.userId);
     this.apiService.getProducts().subscribe(response => {
       this.products = response.data; 
-      console.log('Products loaded:', this.products);
+      // console.log('Products loaded:', this.products);
     
       if (!Array.isArray(this.products)) {
         console.error('Error: products is not an array!', this.products);
@@ -46,10 +46,10 @@ export class ProductDetailComponent implements OnInit {
       }
     
       const productId = this.route.snapshot.paramMap.get('id');
-      console.log('Product ID from URL:', productId);
+      // console.log('Product ID from URL:', productId);
     
       this.product = this.products.find(p => p.id === productId);
-      console.log('Selected Product:', this.product);
+      // console.log('Selected Product:', this.product);
     });
     
     
@@ -85,7 +85,7 @@ export class ProductDetailComponent implements OnInit {
       console.log(this.quantity)
       
       this.apiService.addItemToCart(this.userId, this.product.id,this.quantity).subscribe({
-        next: (response) => console.log('Ürün sepete eklendi!', response),
+        next: (response) => this.showNotification=true,
         error: (err) => console.error('Sepete eklerken hata oluştu:', err),
       });
 
@@ -95,8 +95,8 @@ export class ProductDetailComponent implements OnInit {
       setTimeout(() => {
         this.showNotification = false;
       }, 2000);
-      console.log(`${this.quantity} ədəd ${this.product.name} səbətə əlavə edildi!`);
-      console.log(this.cartService.getCartItems());
+      // console.log(`${this.quantity} ədəd ${this.product.name} səbətə əlavə edildi!`);
+      // console.log(this.cartService.getCartItems());
     }
 
     

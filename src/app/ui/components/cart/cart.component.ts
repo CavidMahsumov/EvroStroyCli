@@ -36,7 +36,7 @@ export class CartComponent implements OnInit {
       this.apiService.getCartItems(this.userId).subscribe(
         (response) => {
           this.cartItems = response.data.cartItems;
-          console.log(this.cartItems);
+          // console.log(this.cartItems);
           this.totalPrice = this.cartItems.reduce(
             (sum, item) => sum + item.quantity * item.productPrice,
             0

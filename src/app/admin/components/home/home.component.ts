@@ -28,7 +28,7 @@ constructor(private router:Router,private apiService:ApiService){}
       this.calculateTotalRevenue();
       
       if (this.orders.length > 0) {
-        console.log('Price:', this.orders[0].totalAmount);
+        // console.log('Price:', this.orders[0].totalAmount);
       } else {
         console.log('Orders list is empty.');
       }
@@ -42,7 +42,7 @@ constructor(private router:Router,private apiService:ApiService){}
     next: (response) => {
       this.products = response.data ?? []; // 'response' artık Product[] türünde
       this.lowStockProducts = this.products?.filter((product:Product) => product.quantity < 10);
-      console.log('Total products:', this.lowStockProducts);
+      // console.log('Total products:', this.lowStockProducts);
     },
     error: (error) => {
       console.error('Error fetching products:', error);
@@ -74,7 +74,7 @@ constructor(private router:Router,private apiService:ApiService){}
 
   calculateTotalRevenue() {
     this.revenue = this.orders?.reduce((sum, order) => sum + order.totalAmount, 0);
-    console.log('Total Revenue:', this.revenue);
+    // console.log('Total Revenue:', this.revenue);
   }
   goToProducts(){
     this.router.navigate(["/admin/products"])

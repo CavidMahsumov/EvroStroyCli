@@ -35,13 +35,13 @@ export class BodyComponent implements AfterViewInit {
           subCategories: category.subCategories
         }));
   
-        console.log('Mapped Categories:', this.apicategories); // Nəticəni yoxlayın
+        // console.log('Mapped Categories:', this.apicategories); // Nəticəni yoxlayın
       }
     });
   
     this.apiService.getProducts().subscribe(response => {
       this.products = response.data; 
-      console.log('Products loaded:', this.products);
+      // console.log('Products loaded:', this.products);
     
       if (!Array.isArray(this.products)) {
         console.error('Error: products is not an array!', this.products);
@@ -140,7 +140,7 @@ export class BodyComponent implements AfterViewInit {
     this.router.navigate(['/catalog', 1]);
   }
   onCategoryClick(categoryId: number) {
-    console.log("Salam")
+    // console.log("Salam")
     this.router.navigate(['/catalog', categoryId]);
   }
   goToProductDetail(productId:string){

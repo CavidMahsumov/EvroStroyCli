@@ -35,7 +35,7 @@ export class CatalogDetailComponent implements OnInit {
           subCategories: category.subCategories || [],
           open: false
         }));
-        console.log(this.apicategories[0].subCategories[0].subcategoryId);
+        // console.log(this.apicategories[0].subCategories[0].subcategoryId);
       }
     });
 

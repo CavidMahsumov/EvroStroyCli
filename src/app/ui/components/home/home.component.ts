@@ -22,10 +22,10 @@ export class HomeComponent implements OnInit  {
 
   ngOnInit(){
     const user = this.authService.getNameIdentifier();
-    console.log('İstifadəçi məlumatları:', user);
+    // console.log('İstifadəçi məlumatları:', user);
     this.apiService.getProducts().subscribe(response => {
       this.products = response.data; 
-      console.log('Products loaded:', this.products);
+      // console.log('Products loaded:', this.products);
     
       if (!Array.isArray(this.products)) {
         console.error('Error: products is not an array!', this.products);

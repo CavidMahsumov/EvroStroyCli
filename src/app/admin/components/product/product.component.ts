@@ -132,11 +132,23 @@ export class ProductComponent implements OnInit {
   
   
   goToHome() {
-    this.router.navigate(['/home']);
+    this.router.navigate(['/admin']);
+  }
+
+  goToOrders(){
+    this.router.navigate(["/admin/orders"])
+
+  }
+  goToSettings(){
+    this.router.navigate(["/admin/settings"])
+  }
+  goToClients(){
+    this.router.navigate(["/admin/customers"])
   }
 
   closeModal() {
     this.isProductModalOpen = false;
     this.selectedProduct = null;
   }
+
 }

@@ -111,7 +111,7 @@ export class HeaderComponent  {
     if(this.authService.isAuthenticated()){
       this.isLogged=true;
       this.userEmail=this.authService.getNameIdentifier();
-      console.log(this.userEmail)
+      // console.log(this.userEmail)
     }
     else{
       this.isLogged=false;
@@ -126,7 +126,7 @@ export class HeaderComponent  {
           subCategories: category.subCategories || [],
           open: false
         }));
-        console.log(this.apicategories[0].subCategories[0].subcategoryId);
+        // console.log(this.apicategories[0].subCategories[0].subcategoryId);
       }
     });
     this.apiService.getProducts().subscribe(response => {
@@ -134,7 +134,7 @@ export class HeaderComponent  {
         // Process the categories
         this.apiProducts = response.data;
         
-        console.log();
+        // console.log();
       }
     });
   }
@@ -151,7 +151,7 @@ export class HeaderComponent  {
     this.router.navigate(["/catalog",categoryId])
   }
   getProductIdByName() {
-    console.log(this.apiProducts);
+    // console.log(this.apiProducts);
     const product = this.apiProducts.find(p => p.name.toLowerCase() === this.searchQuery.toLowerCase());
     return product ? product.categoryId : null;
   }
@@ -164,7 +164,7 @@ export class HeaderComponent  {
     const productCategorId=this.getProductIdByName();
     this.router.navigate(["/catalog",productCategorId]);
     event.preventDefault(); // Form-un səhifəni yeniləməsinin qarşısını alır
-    console.log('Axtarış sorğusu:', this.searchQuery);
+    // console.log('Axtarış sorğusu:', this.searchQuery);
     
     // Burada axtarış funksiyasını çağırın
   }

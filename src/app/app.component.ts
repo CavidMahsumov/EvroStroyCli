@@ -1,5 +1,5 @@
 import { Component, HostListener, NgModule } from '@angular/core';
-import { Router, RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { HomeComponent } from './ui/components/home/home.component';
 import { HeaderComponent } from './ui/components/home/header/header.component';
 import { FooterComponent } from './ui/components/home/footer/footer.component';
@@ -18,22 +18,42 @@ import { AuthService } from './ui/services/auth-service';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {
+    // Router eventlərini dinləyirik
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        // Əgər əvvəlki səhifə "admin" idi və istifadəçi başqa yerə keçirsə, logout et
+        if (this.isAdminPage(this.previousUrl) && !this.isAdminPage(event.url)) {
+          this.logout();
+        }
+        this.previousUrl = event.url; // Cari URL-i yadda saxlayırıq
+      }
+    });
+  }
 
-  // Geri düyməsinə basanda logout etmək üçün istifadə edirik
+  private previousUrl: string = ''; // Əvvəlki URL-i yadda saxlamaq üçün
+
   @HostListener('window:popstate', ['$event'])
   onPopState(event: any) {
-    this.logout();
+    if (this.isAdminPage(this.router.url)) {
+      this.logout();
+    }
   }
 
-  // Reload (yeniləmə) düyməsinə basanda logout etmək üçün istifadə edirik
   @HostListener('window:beforeunload', ['$event'])
   onBeforeUnload(event: any) {
-    this.logout();
+    if (this.isAdminPage(this.router.url)) {
+      this.logout();
+    }
   }
 
-  // Logout funksiyası
   logout(): void {
-    this.authService.logout(); // AuthService içində logout funksiyasını çağırırıq
+    this.authService.logout();
+    sessionStorage.clear(); // Sessiyanı təmizləyir ki, yenidən login istəsin
+  }
+
+  // Admin panel URL-lərini yoxlayırıq
+  private isAdminPage(url: string): boolean {
+    return url.startsWith('/admin'); // "/admin" URL-lərinə uyğunlaşdırın
   }
 }

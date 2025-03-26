@@ -86,7 +86,7 @@ export class CatalogComponent {
           subCategories: category.subCategories
         }));
   
-        console.log('Mapped Categories:', this.apiCategories); 
+        // console.log('Mapped Categories:', this.apiCategories); 
       }
     });
   
@@ -99,7 +99,7 @@ export class CatalogComponent {
     this.router.navigate(['/catalog', categoryId]);
   }
   toggleCategory(category: any) {
-    console.log("Sakan")
+    // console.log("Sakan")
     category.open = !category.open;
   }
 }

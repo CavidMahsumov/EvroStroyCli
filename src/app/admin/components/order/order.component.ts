@@ -25,7 +25,7 @@ export class OrderComponent implements OnInit {
       next: (response) => {
         this.orders = response; // 'response' artık Order[] türünde
         this.filteredOrders = [...this.orders];  // İlk başta bütün sifarişləri göstərin
-        console.log(this.filteredOrders);
+        // console.log(this.filteredOrders);
       },
       error: (error) => {
         console.error('Error fetching orders:', error);
@@ -59,6 +59,12 @@ export class OrderComponent implements OnInit {
   // Parametrlər səhifəsinə getmək
   goToSettings() {
     this.router.navigate(['/admin/settings']);
+  }
+  goToClients(){
+    this.router.navigate(['/admin/customers'])
+  }
+  goToProducts(){
+    this.router.navigate(['/admin/products'])
   }
 }
 
