@@ -8,7 +8,7 @@ import { Order } from '../../models/order.model';
   providedIn: 'root' // Global service
 })
 export class ApiServiceForAdmin {
-  private baseUrl = 'http://173.214.167.131:80/api'; // ASP.NET API URL-i
+  private baseUrl = 'https://narevrostroy.ddns.net:443/api'; // ASP.NET API URL-i
 
   constructor(private http: HttpClient) { }
 

@@ -231,4 +231,15 @@ body.modal-open {
 }
 /* Disable Scroll when Modal is Open */
 
-
+  
+.notification {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  animation: fadeInOut 2s ease-in-out;
+}

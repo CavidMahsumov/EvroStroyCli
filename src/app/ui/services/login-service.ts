@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root' // Global service
 })
 export class LoginService {
-  private baseUrl = 'https://localhost:7208/api'; // ASP.NET API URL-i
+  private baseUrl = 'https://narevrostroy.ddns.net:443/api'; // ASP.NET API URL-i
 
   constructor(private http: HttpClient) { }
 

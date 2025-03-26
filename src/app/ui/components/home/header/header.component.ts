@@ -21,6 +21,7 @@ export class HeaderComponent  {
   apiProducts: Product[] = [];
   isLogged:boolean=false;
   userEmail:string | null=null;
+  showNotification = false;
 
   searchQuery: string = ''; // Axtarış dəyəri burada saxlanır
 
@@ -162,6 +163,13 @@ export class HeaderComponent  {
   }
   onSearch(event: Event) {
     const productCategorId=this.getProductIdByName();
+    if(productCategorId==null){
+      this.showNotification = true;
+
+      setTimeout(() => {
+        this.showNotification = false;
+      },2000)
+    }
     this.router.navigate(["/catalog",productCategorId]);
     event.preventDefault(); // Form-un səhifəni yeniləməsinin qarşısını alır
     // console.log('Axtarış sorğusu:', this.searchQuery);

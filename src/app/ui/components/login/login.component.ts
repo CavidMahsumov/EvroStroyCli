@@ -29,7 +29,7 @@ export class LoginComponent {
       password: this.password.trim()
     };
 
-    this.http.post('http://173.214.167.131:80/api/Auth/login', loginData, { headers: { 'Content-Type': 'application/json' } })
+    this.http.post('https://narevrostroy.ddns.net:443/api/Auth/login', loginData, { headers: { 'Content-Type': 'application/json' } })
       .subscribe(
         (response: any) => {
           const token = response?.token; 

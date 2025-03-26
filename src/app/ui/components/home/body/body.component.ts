@@ -16,6 +16,7 @@ import { Category } from '../../../../models/category.model';
 export class BodyComponent implements AfterViewInit {
  products: Product[] = [];
  apicategories: Category[] = [];
+ showNotification = false;
 
 
   ngAfterViewInit() {
