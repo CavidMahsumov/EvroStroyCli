@@ -1,4 +1,4 @@
-/* Importing Google font - Open Sans */
+/* Google font - Open Sans */
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap');
 
 * {
@@ -8,119 +8,50 @@
   font-family: 'Open Sans', sans-serif;
 }
 
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1; // Əsas kontent səhifəni doldurur
+}
+
+// Footer normal halda
 .footer {
-  bottom: 0; /* Sayfanın en altına yerleştirildi */
-  left: 0;
-  width: 100%; /* Genişliği tamamen kapsaması sağlandı */
   background: #10182F;
-  border-radius: 0; /* Köşe yuvarlamaları kaldırıldı */
-  z-index: 1000; /* Diğer içeriklerin altında kalmaması için z-index eklendi */
-}
-
-.footer .footer-row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 3.5rem;
-  padding: 20px 60px; /* Alt kısım için daha az padding kullanıldı */
-}
-
-.footer-row .footer-col h4 {
-  color: #fff;
-  font-size: 1.2rem;
-  font-weight: 400;
-}
-
-.footer-col .links {
-  margin-top: 20px;
-}
-
-.footer-col .links li {
-  list-style: none;
-  margin-bottom: 10px;
-}
-
-.footer-col .links li a {
-  text-decoration: none;
   color: #bfbfbf;
-}
-
-.footer-col .links li a:hover {
-  color: #fff;
-}
-
-.footer-col p {
-  margin: 20px 0;
-  color: #bfbfbf;
-  max-width: 300px;
-}
-
-.footer-col form {
-  display: flex;
-  gap: 5px;
-}
-
-.footer-col input {
-  height: 40px;
-  border-radius: 6px;
-  background: none;
+  text-align: center;
+  padding: 20px 0;
   width: 100%;
-  outline: none;
-  border: 1px solid #7489C6;
-  caret-color: #fff;
-  color: #fff;
-  padding-left: 10px;
+  
+  p {
+    margin: 0;
+    font-size: 1rem;
+    color: #bfbfbf;
+
+    a {
+      color: #bfbfbf;
+      text-decoration: none;
+
+      &:hover {
+        color: #fff;
+      }
+    }
+  }
 }
 
-.footer-col input::placeholder {
-  color: #ccc;
+// Əgər kontent yoxdursa və ya azdırsa, footer fix olsun
+body:has(.main-content:empty) .footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
 }
 
-.footer-col form button {
-  background: #fff;
-  outline: none;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: 0.2s ease;
-}
-
-.footer-col form button:hover {
-  background: #cecccc;
-}
-
-.footer-col .icons {
-  display: flex;
-  margin-top: 30px;
-  gap: 30px;
-  cursor: pointer;
-}
-
-.footer-col .icons i {
-  color: #afb6c7;
-}
-
-.footer-col .icons i:hover {
-  color: #fff;
-}
-
+// Mobil üçün düzəlişlər
 @media (max-width: 768px) {
-  .footer .footer-row {
-    padding: 10px 20px;
-    gap: 1rem;
-  }
-
-  .footer-col form {
-    display: block;
-  }
-
-  .footer-col form :where(input, button) {
-    width: 100%;
-  }
-
-  .footer-col form button {
-    margin: 10px 0 0 0;
+  .footer {
+    font-size: 0.9rem;
   }
 }

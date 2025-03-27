@@ -23,14 +23,15 @@
     <!-- Telefon və İstifadəçi -->
     <div class="user-actions d-flex align-items-center">
       <div class="phone-info">
-        <p><i class="bi bi-telephone text-danger"></i> <strong>890</strong></p>
+        <p><i class="bi bi-telephone text-danger"></i> <strong>89056114471</strong></p>
         <small>Запросить звонок</small>
       </div>
       <a (click)="goToCart()"  class="btn-outline">Моя корзина</a>
       <a *ngIf="!isLogged" (click)="goToLogin()" class="btn-outline">Вход</a>
 
-      <div *ngIf="isLogged">
+      <div *ngIf="isLogged" class="user-actions">
         <a (click)="logout()" class="btn-outline">Выход</a>
+        <p class="user-email">{{userEmail}}</p>
       </div>
     </div>
 

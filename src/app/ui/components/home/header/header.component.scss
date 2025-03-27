@@ -1,6 +1,4 @@
 /* Üst Navbar */
-
-
 .top-navbar {
   background: white;
   padding: 10px 0;
@@ -21,8 +19,8 @@
 }
 
 .logo img {
-  width: 50px;
-  height: 50px;
+  width: 100px;
+  height: 100px;
   margin-right: 8px;
 }
 
@@ -72,6 +70,7 @@
   text-decoration: none;
   border-radius: 4px;
   cursor: pointer;
+  background-color: transparent; /* Butonun arka planını şeffaf yapıyoruz */
 }
 
 .btn-outline:hover {
@@ -137,25 +136,118 @@
   .sub-navbar.open {
     display: flex;
     flex-direction: column;
+    width: 100%; /* Menyunun tam genişlikte görünmesi sağlanır */
   }
 
   .category-menu {
-    flex-direction: column;
+    flex-direction: column; /* Menü öğeleri dikeyde sıralanır */
+    width: 100%; /* Menü tam genişlikte olacak */
   }
 
   .nav-item {
     text-align: center;
     margin-bottom: 10px;
   }
+
+  .phone-info {
+    margin-right: 0; /* Mobilde telefon bilgisi kaldırılabilir veya üstte sıralanabilir */
+  }
+
+  /* Butonlar ve diğer öğeler için düzenlemeler */
+  .btn-outline {
+    margin-bottom: 10px;
+    display: block;
+    width: 100%; /* Mobilde butonlar tam genişlikte olacak */
+    padding: 10px 0; /* Butonları daha büyük yapalım */
+    text-align: center; /* Buton metnini ortalayalım */
+    border-radius: 8px; /* Buton köşelerini yuvarlayalım */
+    background-color: transparent; /* Rengi koruyalım */
+    color: red; /* Eski renk */
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  .btn-outline:hover {
+    background-color: red;
+    color: white;
+  }
+
+  .search-bar input,
+  .search-bar button {
+    font-size: 1rem; /* Arama kutusu ve butonları daha uygun boyutta yapalım */
+  }
 }
-.notification {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: rgb(230, 47, 47);
+
+@media (max-width: 576px) {
+  .user-actions {
+    display: flex;
+    flex-direction: column; /* Butonları dikey sırala */
+    width: 100%; /* Butonlar tam genişlikte */
+  }
+
+  .btn-outline {
+    margin: 5px 0; /* Butonlar arasındaki mesafeyi ayarlayalım */
+    width: 100%; /* Butonlar aynı genişlikte olacak */
+  }
+
+  .logo span {
+    font-size: 1.2rem; /* Logo metnini küçültme */
+  }
+
+  .search-bar input {
+    font-size: 0.9rem; /* Arama kutusunu küçültme */
+  }
+  .phone-info{
+    margin-top: 20px;
+  }
+}
+
+.user-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.user-actions .btn-outline {
+  padding: 6px 12px;
+  border: 1px solid #ff4d4d;
+  color: #ff4d4d;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: 0.3s;
+  white-space: nowrap;
+}
+
+.user-actions .btn-outline:hover {
+  background-color: #ff4d4d;
   color: white;
-  padding: 10px 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  animation: fadeInOut 2s ease-in-out;
 }
+
+.user-email {
+  font-size: 16px;  /* Daha böyük ölçü */
+  font-weight: bold; /* Qalın mətn */
+  color: #222; /* Daha nəzərəçarpan rəng */
+  margin-left: 10px;
+  white-space: nowrap;
+}
+
+/* Mobil versiya üçün */
+@media (max-width: 768px) {
+  .user-actions {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .user-email {
+    font-size: 12px;
+    margin-left: 0;
+  }
+
+  .btn-outline {
+    font-size: 14px;
+    padding: 5px 10px;
+  }
+}
+
+

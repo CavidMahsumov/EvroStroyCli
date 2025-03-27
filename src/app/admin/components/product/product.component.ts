@@ -145,6 +145,9 @@ export class ProductComponent implements OnInit {
   goToClients(){
     this.router.navigate(["/admin/customers"])
   }
+  goToCategory(){
+    this.router.navigate(["/admin/category"])
+  }
 
   closeModal() {
     this.isProductModalOpen = false;

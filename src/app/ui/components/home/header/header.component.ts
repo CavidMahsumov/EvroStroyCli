@@ -7,6 +7,7 @@ import { Category } from '../../../../models/category.model';
 import { FormsModule } from '@angular/forms';
 import { Product } from '../../../../models/product.model';
 import { AuthService } from '../../../services/auth-service';
+import { User } from '../../../../models/user.model';
 
 @Component({
   selector: 'app-header',
@@ -15,13 +16,16 @@ import { AuthService } from '../../../services/auth-service';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
-export class HeaderComponent  {
+export class HeaderComponent implements OnInit {
   menuOpen = false;
   apicategories: Category[] = [];
   apiProducts: Product[] = [];
   isLogged:boolean=false;
   userEmail:string | null=null;
   showNotification = false;
+  users: User[] = [];
+  userId:string|null=null;
+  user:any;
 
   searchQuery: string = ''; // Axtarış dəyəri burada saxlanır
 
@@ -107,38 +111,58 @@ export class HeaderComponent  {
   constructor(private authService:AuthService, private router:Router,private apiService:ApiService){}
 
 
-  ngOnInit(){
+  ngOnInit() {
+    this.userId = this.authService.getNameIdentifier();
+    console.log(this.userId)
+    // Get users
+    this.apiService.getAllUsers().subscribe(response => {
+      console.log('%cFull API Response for Users:', 'color: blue; font-weight: bold;', response);
+    
+      if (Array.isArray(response) && response.length > 0) {  
+        this.users = response;
+        console.log('%cUsers array successfully set:', 'color: green; font-weight: bold;', this.users);
+        this.user = this.users.find(u => u.id === this.userId);
+        console.log(this.user.firstname)
+        this.userEmail=this.user.firstname
 
-    if(this.authService.isAuthenticated()){
-      this.isLogged=true;
-      this.userEmail=this.authService.getNameIdentifier();
-      // console.log(this.userEmail)
-    }
-    else{
-      this.isLogged=false;
-    }
+      } else {
+        console.error('%cUsers API failed! Invalid response format.', 'color: red; font-weight: bold;', response);
+      }
+    });
 
+    
+    
+  
+    console.log(this.user);  // Burada konsolda yalnız userId-nin göründüyünü görə bilərsiniz.
+  
+    // Get categories
     this.apiService.getCategories().subscribe(response => {
       if (response.success) {
-        // Process the categories
         this.apicategories = response.data.map((category: any) => ({
           id: category.categoryId,
           categoryName: category.categoryName,
           subCategories: category.subCategories || [],
           open: false
         }));
-        // console.log(this.apicategories[0].subCategories[0].subcategoryId);
+        console.log('Categories:', this.apicategories);  // Categories response-unun konsolda göstərilməsi
       }
     });
+  
+    // Get products
     this.apiService.getProducts().subscribe(response => {
       if (response.success) {
-        // Process the categories
         this.apiProducts = response.data;
-        
-        // console.log();
+        console.log('Products:', this.apiProducts);  // Products response-unun konsolda göstərilməsi
       }
     });
+  
+    if (this.authService.isAuthenticated()) {
+      this.isLogged = true;
+    } else {
+      this.isLogged = false;
+    }
   }
+  
   toggleMenu() {
     this.menuOpen = !this.menuOpen;
   }

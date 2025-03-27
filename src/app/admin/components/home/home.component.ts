@@ -89,4 +89,7 @@ constructor(private router:Router,private apiService:ApiService){}
   goToClients(){
     this.router.navigate(["/admin/customers"])
   }
+  goToCategory(){
+    this.router.navigate(["/admin/category"])
+  }
 }

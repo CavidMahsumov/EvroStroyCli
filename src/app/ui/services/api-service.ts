@@ -71,19 +71,10 @@ export class ApiService {
     
   }
 
-
-
   deleteItemFromCart(itemId: number): Observable<any> {
     return this.http.post(`${this.baseUrl}/Cart/delete/${itemId}`, {}); 
   }
 
-  
-
-  
- 
-  
-    // GET request (məsələn, bütün məhsulları gətir)
- 
   
     getAllOrders(): Observable<Order[]> {
       return this.http.get<{ data: Order[] }>(`${this.baseUrl}/Order/AllOrders`).pipe(
@@ -95,8 +86,25 @@ export class ApiService {
       return this.http.get(`${this.baseUrl}/User/GetAll`);
 
     }
+    addCategory(categoryData: { Name: string }): Observable<any> {
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json'
+      });
     
-  }
+      return this.http.post(`${this.baseUrl}/category/AddCategory`, JSON.stringify(categoryData), { headers });
+    }
+    addSubcategory(subcategoryData: { Name: string, CategoryId: number }) {
+      const headers = new HttpHeaders({
+        'Content-Type': 'application/json'
+      });
+    
+      return this.http.post<any>(`${this.baseUrl}/Subcategory/Add`, JSON.stringify(subcategoryData), { headers });
+    }
+    
+}
+    
+    
+  
   
 
 

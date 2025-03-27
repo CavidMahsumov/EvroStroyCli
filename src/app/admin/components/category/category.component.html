@@ -1,0 +1,77 @@
+<div class="admin-panel">
+    <div class="sidebar">
+      <h2>Admin Panel</h2>
+      <ul>
+        <li><a (click)="goToHome()">Главная страница</a></li>
+        <li><a (click)="goToProducts()">Продукция</a></li>
+        <li><a (click)="goToOrders()">Заказы</a></li>
+        <li><a (click)="goToClients()">Клиенты</a></li>
+        <li><a (click)="goToCategory()">Категории</a></li>
+
+      </ul>
+    </div>
+  
+    <main class="content">
+      <h1>Категории</h1>
+  
+      <button (click)="openAddCategoryModal()">Добавить категорию</button>
+      <button (click)="openAddSubcategoryModal()">Добавить подкатегорию</button>
+  
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Название</th>
+            <th>Подкатегории</th>
+            <!-- <th>Операции</th> -->
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let category of apicategories">
+            <td>{{ category.id }}</td>
+            <td>{{ category.categoryName }}</td>
+            <td>
+              <ul>
+                <li *ngFor="let sub of category.subCategories">
+                  {{ sub.subcategoryName }}
+                </li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  
+      <!-- Kategoriya Əlavə Modalı -->
+      <div class="modal" *ngIf="isCategoryModalOpen">
+        <div class="modal-content">
+          <h2>Добавить категорию</h2>
+          <form [formGroup]="categoryForm" (ngSubmit)="saveCategory()">
+            <label for="Name">Название категории:</label>
+            <input id="Name" formControlName="Name" required />
+            <button type="submit" [disabled]="categoryForm.invalid">Добавить</button>
+            <button type="button" (click)="isCategoryModalOpen = false">Закрыть</button>
+          </form>
+        </div>
+      </div>
+  
+      <!-- Subkategoriya Əlavə Modalı -->
+      <div class="modal" *ngIf="isSubcategoryModalOpen">
+        <div class="modal-content">
+          <h2>Добавить подкатегорию</h2>
+          <form [formGroup]="subcategoryForm" (ngSubmit)="saveSubcategory()">
+            <label for="Name">Название подкатегории:</label>
+            <input id="Name" formControlName="Name" required />
+      
+            <label for="CategoryId">Выберите категорию:</label>
+            <select id="CategoryId" formControlName="CategoryId" required>
+              <option *ngFor="let category of apicategories" [value]="category.id" >{{ category.categoryName }}</option>
+            </select>
+      
+            <button type="submit" [disabled]="subcategoryForm.invalid">Добавить подкатегорию</button>
+            <button type="button" (click)="isSubcategoryModalOpen = false">Закрыть</button>
+          </form>
+        </div>
+      </div>
+    </main>
+  </div>
+  

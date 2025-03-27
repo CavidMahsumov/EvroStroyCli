@@ -66,5 +66,8 @@ export class OrderComponent implements OnInit {
   goToProducts(){
     this.router.navigate(['/admin/products'])
   }
+  goToCategory(){
+    this.router.navigate(['/admin/category'])
+  }
 }
 
